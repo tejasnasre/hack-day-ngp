@@ -33,6 +33,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           setIsLoading(false);
         }
       } catch (error) {
+        console.error("Error getting initial session:", error);
         if (mounted) {
           setIsLoading(false);
         }

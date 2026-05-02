@@ -1,6 +1,7 @@
 import * as ImagePicker from "expo-image-picker";
 import { useEffect, useState } from "react";
-import { Alert, Image, Text, TouchableOpacity, View } from "react-native";
+import { Alert, Image, View } from "react-native";
+import { Button } from "heroui-native";
 import { supabase } from "../lib/supabase";
 
 interface Props {
@@ -12,7 +13,6 @@ interface Props {
 export default function Avatar({ url, size = 150, onUpload }: Props) {
   const [uploading, setUploading] = useState(false);
   const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
-  const avatarSize = { height: size, width: size };
 
   useEffect(() => {
     if (url) downloadImage(url);
@@ -91,17 +91,23 @@ export default function Avatar({ url, size = 150, onUpload }: Props) {
   }
 
   return (
-    <View>
+    <View className="items-center gap-4">
       {avatarUrl ? (
-        <Image source={{ uri: avatarUrl }} accessibilityLabel="Avatar" />
+        <Image 
+          source={{ uri: avatarUrl }} 
+          accessibilityLabel="Avatar" 
+          className="rounded-full bg-muted border-4 border-card"
+          style={{ width: size, height: size }}
+        />
       ) : (
-        <View />
+        <View 
+          className="rounded-full bg-muted flex items-center justify-center border-4 border-card"
+          style={{ width: size, height: size }}
+        />
       )}
-      <View>
-        <TouchableOpacity onPress={uploadAvatar} disabled={uploading}>
-          <Text>{uploading ? "Uploading ..." : "Upload"}</Text>
-        </TouchableOpacity>
-      </View>
+      <Button variant="secondary" onPress={uploadAvatar} isDisabled={uploading}>
+        <Button.Label>{uploading ? "Uploading ..." : "Upload Image"}</Button.Label>
+      </Button>
     </View>
   );
 }

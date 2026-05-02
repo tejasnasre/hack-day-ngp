@@ -1,6 +1,6 @@
 import { Spinner } from "heroui-native";
 import { View } from "react-native";
-import Account from "../components/Account";
+import { Redirect } from "expo-router";
 import Auth from "../components/Auth";
 import { useAuth } from "../providers/AuthProvider";
 
@@ -9,19 +9,20 @@ export default function Index() {
 
   if (isLoading) {
     return (
-      <View className="flex-1 items-center justify-center">
+      <View className="flex-1 items-center justify-center bg-background">
         <Spinner size="lg" color="primary" />
       </View>
     );
   }
 
+  if (user) {
+    return <Redirect href="/(tabs)/profile" />;
+  }
+
   return (
     <View style={{ flex: 1 }}>
-      {user ? (
-        <Account key={user.id} userId={user.id} email={user.email} />
-      ) : (
-        <Auth />
-      )}
+      <Auth />
     </View>
   );
 }
+
