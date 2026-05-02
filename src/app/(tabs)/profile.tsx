@@ -8,7 +8,7 @@ export default function ProfileScreen() {
   if (!user) return null;
 
   return (
-    <View className="flex-1 bg-background">
+    <View className="flex-1 bg-white pt-safe">
       <Account key={user.id} userId={user.id} email={user.email} />
     </View>
   );

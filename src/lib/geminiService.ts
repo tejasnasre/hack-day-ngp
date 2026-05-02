@@ -1,9 +1,9 @@
 import { GoogleGenAI } from "@google/genai";
 import { ProductData } from "./foodApi";
 
-// The client gets the API key from the environment variable `GEMINI_API_KEY`.
+// The client gets the API key from the environment variable `EXPO_PUBLIC_GEMINI_API_KEY`.
 const client = new GoogleGenAI({
-  apiKey: process.env.GEMINI_API_KEY,
+  apiKey: process.env.EXPO_PUBLIC_GEMINI_API_KEY || "",
 });
 
 export interface HealthInsight {
@@ -54,7 +54,7 @@ Please provide a detailed health analysis in JSON format with:
 Return ONLY valid JSON, no markdown formatting.`;
 
     const response = await client.models.generateContent({
-      model: "gemini-1.5-flash",
+      model: "gemini-3-flash-preview",
       contents: nutritionPrompt,
     });
 

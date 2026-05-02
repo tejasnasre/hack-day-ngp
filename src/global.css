@@ -10,6 +10,7 @@
   /* Fonts */
   --font-sans: "CossetteTexte-Regular";
   --font-bold: "CossetteTexte-Bold";
+  --font-cossette-bold: "CossetteTexte-Bold";
 }
 
 @layer theme {

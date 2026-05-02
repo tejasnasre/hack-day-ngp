@@ -1,8 +1,10 @@
 import { useCallback, useEffect, useState } from "react";
-import { Alert, View } from "react-native";
+import { Alert, View, Text } from "react-native";
 import { supabase } from "../lib/supabase";
 import Avatar from "./Avatar";
-import { Button, Card, TextField, Label, Input } from "heroui-native";
+import { Button, TextField, Label, Input } from "heroui-native";
+
+
 
 export default function Account({
   userId,
@@ -80,67 +82,79 @@ export default function Account({
   }
 
   return (
-    <View className="flex-1 p-4 bg-background justify-center">
-      <Card>
-        <Card.Body className="gap-6 p-6">
-          <Card.Title className="text-3xl font-cossette-bold text-center mb-2">Profile</Card.Title>
-          <Card.Description className="text-center mb-2">Manage your account details</Card.Description>
+    <View className="flex-1 px-6 py-8">
+      <View className="mb-10 items-center">
+        <Text className="text-3xl font-cossette-bold text-foreground text-center">
+          Profile
+        </Text>
+        <Text className="text-muted text-sm text-center mt-1">
+          Manage your account details
+        </Text>
+      </View>
 
-          <View className="items-center mb-4">
-            <Avatar
-              size={120}
-              url={avatarUrl}
-              onUpload={(url: string) => {
-                setAvatarUrl(url);
-                updateProfile({ username, website, avatar_url: url });
-              }}
-            />
-          </View>
-          
-          <View className="gap-4">
-            <TextField>
-              <Label>Email</Label>
-              <Input
-                value={email ?? ""}
-                editable={false}
-                selectTextOnFocus={false}
-              />
-            </TextField>
-            
-            <TextField>
-              <Label>Username</Label>
-              <Input
-                value={username || ""}
-                onChangeText={(text) => setUsername(text)}
-              />
-            </TextField>
-            
-            <TextField>
-              <Label>Website</Label>
-              <Input
-                value={website || ""}
-                onChangeText={(text) => setWebsite(text)}
-              />
-            </TextField>
-          </View>
+      <View className="items-center mb-10">
+        <Avatar
+          size={120}
+          url={avatarUrl}
+          onUpload={(url: string) => {
+            setAvatarUrl(url);
+            updateProfile({ username, website, avatar_url: url });
+          }}
+        />
+      </View>
 
-          <View className="gap-3 mt-6">
-            <Button
-              variant="primary"
-              onPress={() =>
-                updateProfile({ username, website, avatar_url: avatarUrl })
-              }
-              isDisabled={loading}
-            >
-              <Button.Label>{loading ? "Loading ..." : "Update Profile"}</Button.Label>
-            </Button>
-            
-            <Button variant="danger-soft" onPress={() => supabase.auth.signOut()}>
-              <Button.Label>Sign Out</Button.Label>
-            </Button>
-          </View>
-        </Card.Body>
-      </Card>
+      <View className="gap-6 mb-10">
+        <TextField>
+          <Label className="text-[10px] font-cossette-bold uppercase tracking-widest mb-1 text-muted">Email</Label>
+          <Input
+            value={email ?? ""}
+            editable={false}
+            className="bg-gray-50 border-gray-100"
+          />
+        </TextField>
+
+        <TextField>
+          <Label className="text-[10px] font-cossette-bold uppercase tracking-widest mb-1 text-muted">Username</Label>
+          <Input
+            value={username || ""}
+            onChangeText={(text) => setUsername(text)}
+            className="bg-gray-50 border-gray-100"
+          />
+        </TextField>
+
+        <TextField>
+          <Label className="text-[10px] font-cossette-bold uppercase tracking-widest mb-1 text-muted">Website</Label>
+          <Input
+            value={website || ""}
+            onChangeText={(text) => setWebsite(text)}
+            className="bg-gray-50 border-gray-100"
+          />
+        </TextField>
+      </View>
+
+      <View className="gap-3">
+        <Button
+          className="bg-primary h-12 rounded-xl"
+          onPress={() =>
+            updateProfile({ username, website, avatar_url: avatarUrl })
+          }
+          isDisabled={loading}
+        >
+          <Button.Label className="text-white font-cossette-bold uppercase tracking-widest text-xs">
+            {loading ? "Updating..." : "Update Profile"}
+          </Button.Label>
+        </Button>
+
+        <Button 
+          variant="ghost"
+          className="h-12"
+          onPress={() => supabase.auth.signOut()}
+        >
+          <Button.Label className="text-red-500 font-cossette-bold uppercase tracking-widest text-xs">
+            Sign Out
+          </Button.Label>
+        </Button>
+      </View>
     </View>
   );
 }
