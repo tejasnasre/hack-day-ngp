@@ -3,7 +3,7 @@ import { ProductData } from "./foodApi";
 
 // The client gets the API key from the environment variable `GEMINI_API_KEY`.
 const client = new GoogleGenAI({
-  apiKey: process.env.GEMINI_API_KEY || "AIzaSyDXn4gpZnqjiWVKvpmTDb0c_xeTM-dsxf4",
+  apiKey: process.env.GEMINI_API_KEY,
 });
 
 export interface HealthInsight {
