@@ -4,6 +4,11 @@ import * as SplashScreen from "expo-splash-screen";
 import { HeroUINativeProvider } from "heroui-native";
 import { useEffect } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import {
+  SafeAreaListener,
+  SafeAreaProvider,
+} from "react-native-safe-area-context";
+import { Uniwind } from "uniwind";
 import { AuthProvider } from "../providers/AuthProvider";
 // @ts-ignore
 import "../global.css";
@@ -29,17 +34,25 @@ export default function RootLayout() {
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <HeroUINativeProvider
-        config={{
-          devInfo: {
-            stylingPrinciples: false,
-          },
-        }}
-      >
-        <AuthProvider>
-          <Stack screenOptions={{ headerShown: false }} />
-        </AuthProvider>
-      </HeroUINativeProvider>
+      <SafeAreaProvider>
+        <SafeAreaListener
+          onChange={({ insets }) => {
+            Uniwind.updateInsets(insets);
+          }}
+        >
+          <HeroUINativeProvider
+            config={{
+              devInfo: {
+                stylingPrinciples: false,
+              },
+            }}
+          >
+            <AuthProvider>
+              <Stack screenOptions={{ headerShown: false }} />
+            </AuthProvider>
+          </HeroUINativeProvider>
+        </SafeAreaListener>
+      </SafeAreaProvider>
     </GestureHandlerRootView>
   );
 }
