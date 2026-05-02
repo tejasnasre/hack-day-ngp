@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "app",
-    "slug": "app",
+    "name": "Scan Bite",
+    "slug": "scan-bite",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "app",
+    "scheme": "scan-bite",
     "userInterfaceStyle": "automatic",
     "ios": {
       "icon": "./assets/expo.icon"

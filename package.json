@@ -11,6 +11,7 @@
     "lint": "expo lint"
   },
   "dependencies": {
+    "@infinitered/react-native-mlkit-image-labeling": "^5.0.0",
     "@react-native-async-storage/async-storage": "^3.0.2",
     "@react-navigation/bottom-tabs": "^7.15.5",
     "@react-navigation/elements": "^2.9.10",
@@ -19,6 +20,7 @@
     "@types/aes-js": "^3.1.4",
     "aes-js": "^3.1.2",
     "expo": "~55.0.19",
+    "expo-asset": "^55.0.16",
     "expo-constants": "~55.0.15",
     "expo-device": "~55.0.15",
     "expo-font": "~55.0.6",

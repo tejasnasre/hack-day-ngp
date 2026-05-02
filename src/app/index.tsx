@@ -1,45 +1,24 @@
-import { useEffect, useState } from "react";
+import { Spinner } from "heroui-native";
 import { View } from "react-native";
 import Account from "../components/Account";
 import Auth from "../components/Auth";
-import { supabase } from "../lib/supabase";
+import { useAuth } from "../providers/AuthProvider";
 
 export default function Index() {
-  const [userId, setUserId] = useState<string | null>(null);
-  const [email, setEmail] = useState<string | undefined>(undefined);
+  const { user, isLoading } = useAuth();
 
-  useEffect(() => {
-    // Initialize current user
-    supabase.auth.getUser().then(({ data: { user } }) => {
-      if (user) {
-        setUserId(user.id);
-        setEmail(user.email ?? undefined);
-      }
-    });
-
-    // Subscribe to auth state changes
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      const user = session?.user ?? null;
-      if (user) {
-        setUserId(user.id);
-        setEmail(user.email ?? undefined);
-      } else {
-        setUserId(null);
-        setEmail(undefined);
-      }
-    });
-
-    return () => {
-      subscription?.unsubscribe();
-    };
-  }, []);
+  if (isLoading) {
+    return (
+      <View className="flex-1 items-center justify-center">
+        <Spinner size="lg" color="primary" />
+      </View>
+    );
+  }
 
   return (
-    <View>
-      {userId ? (
-        <Account key={userId} userId={userId} email={email} />
+    <View style={{ flex: 1 }}>
+      {user ? (
+        <Account key={user.id} userId={user.id} email={user.email} />
       ) : (
         <Auth />
       )}
