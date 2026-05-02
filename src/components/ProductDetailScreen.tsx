@@ -116,21 +116,20 @@ export default function ProductDetailScreen({
   );
 
   return (
-    <View className="flex-1 bg-white pt-safe">
+    <View className="flex-1 bg-background pt-safe">
       <View className="flex-1">
         {/* Header */}
         <View className="flex-row items-center justify-between px-4 py-4 border-b border-gray-100">
           <PressableFeedback onPress={onClose} className="p-2">
             <ArrowLeft size={24} color="#111827" />
           </PressableFeedback>
-          <Text className="text-foreground font-bold text-lg">Product Details</Text>
+          <Text className="text-foreground font-bold text-lg">
+            Product Details
+          </Text>
           <View className="w-10" />
         </View>
 
-        <ScrollView
-          className="flex-1"
-          showsVerticalScrollIndicator={false}
-        >
+        <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
           {/* Product Info Section */}
           <View className="p-6 border-b border-gray-100">
             <View className="flex-row items-start mb-6">
@@ -208,12 +207,24 @@ export default function ProductDetailScreen({
               <Text className="text-foreground font-bold text-sm uppercase tracking-widest mb-2 mt-2">
                 Nutritional Values (100g)
               </Text>
-              
+
               <NutritionRow label="Protein" value={macros.protein} unit="g" />
-              <NutritionRow label="Carbohydrates" value={macros.carbs} unit="g" />
+              <NutritionRow
+                label="Carbohydrates"
+                value={macros.carbs}
+                unit="g"
+              />
               <NutritionRow label="Total Fat" value={macros.fat} unit="g" />
-              <NutritionRow label="Saturated Fat" value={macros.saturatedFat} unit="g" />
-              <NutritionRow label="Dietary Fiber" value={macros.fiber} unit="g" />
+              <NutritionRow
+                label="Saturated Fat"
+                value={macros.saturatedFat}
+                unit="g"
+              />
+              <NutritionRow
+                label="Dietary Fiber"
+                value={macros.fiber}
+                unit="g"
+              />
               <NutritionRow label="Sugars" value={macros.sugars} unit="g" />
               <NutritionRow label="Sodium" value={macros.sodium} unit="mg" />
 
@@ -259,11 +270,11 @@ export default function ProductDetailScreen({
         </ScrollView>
 
         {/* Footer Actions */}
-        <View className="p-6 border-t border-gray-100 bg-white">
+        <View className="p-6 border-t border-gray-100 bg-background">
           <View className="flex-row gap-3">
             <Button
               size="lg"
-              className="flex-1 bg-primary rounded-lg h-12"
+              className="flex-1 rounded-lg h-12"
               onPress={handleSaveProduct}
               isDisabled={isSaving}
             >
@@ -289,5 +300,3 @@ export default function ProductDetailScreen({
     </View>
   );
 }
-
-

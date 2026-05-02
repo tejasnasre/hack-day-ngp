@@ -60,7 +60,7 @@ export default function ScanScreen() {
   // Loading screen
   if (screenState === "loading") {
     return (
-      <View className="flex-1 bg-[#F8F9F5] items-center justify-center px-8">
+      <View className="flex-1 bg-background items-center justify-center px-8">
         <View className="w-24 h-24 rounded-[40px] bg-white shadow-xl items-center justify-center mb-6 border border-white">
           <ActivityIndicator size="large" color="#2E7D32" />
         </View>
@@ -98,9 +98,9 @@ export default function ScanScreen() {
 
   // Home screen
   return (
-    <View className="flex-1 bg-[#F8F9F5] pt-safe">
-      <ScrollView 
-        className="flex-1" 
+    <View className="flex-1 bg-background pt-safe">
+      <ScrollView
+        className="flex-1"
         contentContainerClassName="px-6 py-12"
         showsVerticalScrollIndicator={false}
       >
@@ -130,30 +130,31 @@ export default function ScanScreen() {
           </View>
         </PressableFeedback>
 
-        <View className="bg-white/60 rounded-[32px] p-6 border border-white shadow-sm flex-row items-center">
+        <View className="bg-white/60 rounded-[32px] p-2 border border-white shadow-sm flex-row items-center">
           <View className="w-10 h-10 bg-blue-50 rounded-full items-center justify-center mr-4">
             <HelpCircle size={20} color="#2563EB" />
           </View>
           <View className="flex-1">
-            <Text className="text-foreground font-cossette-bold text-sm mb-1 uppercase tracking-widest">
+            <Text className="text-foreground font-cossette-bold text-sm mb-1">
               How it works
             </Text>
             <Text className="text-muted text-[11px] leading-4 font-medium">
-              We use Open Food Facts & Gemini AI to analyze ingredients and macros instantly.
+              We use Open Food Facts & Gemini AI to analyze ingredients and
+              macros instantly.
             </Text>
           </View>
         </View>
       </ScrollView>
 
-      <View className="p-6 bg-gradient-to-t from-[#F8F9F5] via-[#F8F9F5] to-transparent">
+      <View className="p-6">
         <Button
           size="lg"
-          className="w-full h-14 rounded-full shadow-xl bg-foreground"
+          className="w-full h-14 rounded-full"
           onPress={handleScanPress}
         >
           <View className="flex-row items-center">
             <ScanBarcode size={20} color="white" />
-            <Text className="text-white font-cossette-bold ml-2 text-sm uppercase tracking-widest">
+            <Text className="text-white font-cossette-bold ml-2 text-sm">
               Launch Scanner
             </Text>
           </View>
@@ -162,4 +163,3 @@ export default function ScanScreen() {
     </View>
   );
 }
-

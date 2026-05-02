@@ -1,10 +1,8 @@
+import { Button, Input } from "heroui-native";
 import { useCallback, useEffect, useState } from "react";
-import { Alert, View, Text } from "react-native";
+import { Alert, Text, View } from "react-native";
 import { supabase } from "../lib/supabase";
 import Avatar from "./Avatar";
-import { Button, TextField, Label, Input } from "heroui-native";
-
-
 
 export default function Account({
   userId,
@@ -82,19 +80,14 @@ export default function Account({
   }
 
   return (
-    <View className="flex-1 px-6 py-8">
-      <View className="mb-10 items-center">
-        <Text className="text-3xl font-cossette-bold text-foreground text-center">
-          Profile
-        </Text>
-        <Text className="text-muted text-sm text-center mt-1">
-          Manage your account details
-        </Text>
-      </View>
+    <View className="flex-1 px-4 py-6">
+      {/* Header */}
+      <Text className="text-2xl font-cossette-bold mb-8">Profile</Text>
 
-      <View className="items-center mb-10">
+      {/* Avatar */}
+      <View className="items-center mb-8">
         <Avatar
-          size={120}
+          size={100}
           url={avatarUrl}
           onUpload={(url: string) => {
             setAvatarUrl(url);
@@ -103,54 +96,54 @@ export default function Account({
         />
       </View>
 
-      <View className="gap-6 mb-10">
-        <TextField>
-          <Label className="text-[10px] font-cossette-bold uppercase tracking-widest mb-1 text-muted">Email</Label>
-          <Input
-            value={email ?? ""}
-            editable={false}
-            className="bg-gray-50 border-gray-100"
-          />
-        </TextField>
+      {/* Form */}
+      <View className="gap-4 mb-8">
+        <View>
+          <Text className="text-xs font-semibold text-muted mb-2">Email</Text>
+          <Input value={email ?? ""} editable={false} className="bg-gray-100" />
+        </View>
 
-        <TextField>
-          <Label className="text-[10px] font-cossette-bold uppercase tracking-widest mb-1 text-muted">Username</Label>
+        <View>
+          <Text className="text-xs font-semibold text-muted mb-2">
+            Username
+          </Text>
           <Input
             value={username || ""}
-            onChangeText={(text) => setUsername(text)}
-            className="bg-gray-50 border-gray-100"
+            onChangeText={setUsername}
+            placeholder="Enter username"
           />
-        </TextField>
+        </View>
 
-        <TextField>
-          <Label className="text-[10px] font-cossette-bold uppercase tracking-widest mb-1 text-muted">Website</Label>
+        <View>
+          <Text className="text-xs font-semibold text-muted mb-2">Website</Text>
           <Input
             value={website || ""}
-            onChangeText={(text) => setWebsite(text)}
-            className="bg-gray-50 border-gray-100"
+            onChangeText={setWebsite}
+            placeholder="Enter website"
           />
-        </TextField>
+        </View>
       </View>
 
-      <View className="gap-3">
+      {/* Buttons */}
+      <View className="gap-2">
         <Button
-          className="bg-primary h-12 rounded-xl"
+          className="h-11 rounded-lg"
           onPress={() =>
             updateProfile({ username, website, avatar_url: avatarUrl })
           }
           isDisabled={loading}
         >
-          <Button.Label className="text-white font-cossette-bold uppercase tracking-widest text-xs">
-            {loading ? "Updating..." : "Update Profile"}
+          <Button.Label className="text-white font-semibold text-sm">
+            {loading ? "Saving..." : "Save Changes"}
           </Button.Label>
         </Button>
 
-        <Button 
+        <Button
           variant="ghost"
-          className="h-12"
+          className="h-11"
           onPress={() => supabase.auth.signOut()}
         >
-          <Button.Label className="text-red-500 font-cossette-bold uppercase tracking-widest text-xs">
+          <Button.Label className="text-red-500 font-semibold text-sm">
             Sign Out
           </Button.Label>
         </Button>
