@@ -1,56 +1,74 @@
-# Welcome to your Expo app 👋
+# ScanBite 🍎
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+**ScanBite** is a modern, AI-powered nutrition companion designed to help you make smarter, healthier food choices in seconds. By bridging the gap between complex nutritional labels and actionable health insights, ScanBite empowers consumers to take control of their diet with the power of Generative AI.
 
-## Get started
+## 🚀 Key Features
 
-1. Install dependencies
+- **Instant Product Scanning**: Use your camera to scan food products and get immediate nutritional breakdowns.
+- **Smart Health Grading**: Receive a comprehensive health score (0-100) and grade (A-F) for every item.
+- **Personalized Insights**: Track your consumption patterns and receive AI-generated weekly summaries.
+- **Additive Alert**: Automatically identifies and flags concerning additives like High Fructose Corn Syrup or excessive sodium.
+- **History Log**: Keep a detailed record of what you've consumed to monitor your progress.
 
+## 🤖 How We Used AI
+
+ScanBite leverages the state-of-the-art **Google Gemini 1.5 Flash** model to provide deep, contextual nutritional analysis.
+
+- **Intelligent Analysis**: Instead of just displaying raw numbers, Gemini analyzes the synergy between ingredients, macronutrients, and processing levels (NOVA groups).
+- **Natural Language Recommendations**: The AI provides human-readable strengths, concerns, and actionable recommendations for every product scanned.
+- **Pattern Recognition**: Our "Insights" engine uses Gemini to analyze your weekly log, identifying trends and suggesting improvements based on your actual consumption data.
+- **Dynamic Formatting**: We use Gemini's JSON generation capabilities to power a rich, structured UI that updates in real-time.
+
+## 🌍 Consumer Impact
+
+ScanBite isn't just a calorie counter; it's a transparency tool for the modern consumer.
+
+- **Democratizing Nutrition**: Complex ingredient lists are simplified into easy-to-understand health grades, making professional-grade nutrition advice accessible to everyone.
+- **Behavioral Change**: By highlighting "strengths" and "concerns," users are encouraged to choose alternatives that better align with their health goals.
+- **Reducing Processing Blindness**: The app helps users identify "ultra-processed" foods that often hide behind health-focused marketing.
+- **Efficiency**: No more manual searching or reading tiny print. A quick scan provides all the context needed to make an informed purchase.
+
+---
+
+## 🛠️ Technical Setup
+
+### Prerequisites
+
+- [Bun](https://bun.sh) or Node.js
+- Expo Go (for mobile testing)
+- Google Gemini API Key
+- Supabase Project (for Authentication and Database)
+
+### Get Started
+
+1. **Install dependencies**
    ```bash
-   npm install
+   bun install
    ```
 
-2. Start the app
-
-   ```bash
-   npx expo start
+2. **Configure Environment**
+   Create a `.env` file in the root directory:
+   ```env
+   EXPO_PUBLIC_SUPABASE_URL=your_supabase_url
+   EXPO_PUBLIC_SUPABASE_KEY=your_supabase_anon_key
+   GEMINI_API_KEY=your_gemini_api_key
    ```
 
-In the output, you'll find options to open the app in a
+3. **Start the app**
+   ```bash
+   bun run android # or ios / web
+   ```
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## 🏗️ Tech Stack
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+- **Framework**: Expo (React Native)
+- **AI Engine**: Google Gemini 1.5 Flash
+- **Backend**: Supabase (Auth, DB, Storage)
+- **UI Library**: HeroUI Native
+- **Styling**: Uniwind (Tailwind CSS v4)
+- **Icons**: Lucide React Native
 
-## Get a fresh project
+---
 
-When you're ready, run:
+Created with ❤️ during Hack Day.
 
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-### Other setup steps
-
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
